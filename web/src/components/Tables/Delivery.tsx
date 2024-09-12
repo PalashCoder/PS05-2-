@@ -23,7 +23,16 @@ const AllOrders = () => {
                 Items
               </th>
               <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
+                Delivery Type
+              </th>
+              <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
                 Quantity
+              </th>
+              <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
+                Order Date
+              </th>
+              <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
+                Expected Delivery
               </th>
               <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white">
                 Status
@@ -43,7 +52,32 @@ const AllOrders = () => {
                 <td
                   className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allorders.length - 1 ? "border-b-0" : "border-b"}`}
                 >
+                  <p className="text-dark dark:text-white">
+                    {items.quickdelivery
+                      ? "Quick Delivery"
+                      : "Standard Delivery"}
+                  </p>
+                </td>
+                <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allorders.length - 1 ? "border-b-0" : "border-b"}`}
+                >
                   <p className="text-dark dark:text-white">{items.quantity}</p>
+                </td>
+                <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allorders.length - 1 ? "border-b-0" : "border-b"}`}
+                >
+                  <p className="text-dark dark:text-white">
+                    {new Date(items.orderplaced).toLocaleDateString("en-CA")}
+                  </p>
+                </td>
+                <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allorders.length - 1 ? "border-b-0" : "border-b"}`}
+                >
+                  <p className="text-dark dark:text-white">
+                    {new Date(items.expecteddelivery).toLocaleDateString(
+                      "en-CA",
+                    )}
+                  </p>
                 </td>
                 <td
                   className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allorders.length - 1 ? "border-b-0" : "border-b"}`}

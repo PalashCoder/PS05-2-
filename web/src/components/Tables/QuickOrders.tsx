@@ -167,6 +167,12 @@ const QuickOrders = () => {
               <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
                 Quantity
               </th>
+              <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
+                Order Date
+              </th>
+              <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
+                Expected Delivery
+              </th>
               <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white">
                 Status
               </th>
@@ -187,6 +193,22 @@ const QuickOrders = () => {
                   className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allQuickOrders.length - 1 ? "border-b-0" : "border-b"}`}
                 >
                   <p className="text-dark dark:text-white">{item.quantity}</p>
+                </td>
+                <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allQuickOrders.length - 1 ? "border-b-0" : "border-b"}`}
+                >
+                  <p className="text-dark dark:text-white">
+                    {new Date(item.orderplaced).toLocaleDateString("en-CA")}
+                  </p>
+                </td>
+                <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allQuickOrders.length - 1 ? "border-b-0" : "border-b"}`}
+                >
+                  <p className="text-dark dark:text-white">
+                    {new Date(item.expecteddelivery).toLocaleDateString(
+                      "en-CA",
+                    )}
+                  </p>
                 </td>
                 <td
                   className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allQuickOrders.length - 1 ? "border-b-0" : "border-b"}`}

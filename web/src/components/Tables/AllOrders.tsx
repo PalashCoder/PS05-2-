@@ -24,6 +24,7 @@ const AllOrders = () => {
     quantity: "",
     quickdelivery: false,
     expecteddelivery: new Date(),
+    orderplaced: new Date(),
   });
   const [allOrders, setAllOrders]: any = useState([]);
   const [currentId, setCurrentId] = useState<string | null>(null);
@@ -74,6 +75,7 @@ const AllOrders = () => {
       quantity: order.quantity,
       quickdelivery: order.quickdelivery,
       expecteddelivery: new Date(order.expecteddelivery),
+      orderplaced: new Date(),
     });
     setCurrentId(order._id);
     onOpen();
@@ -92,7 +94,8 @@ const AllOrders = () => {
             quantity: "",
             quickdelivery: false,
             expecteddelivery: new Date(),
-          }); // Reset form
+            orderplaced: new Date(),
+          });
           onOpen();
         }}
         className="text-body-2xl mb-4 rounded-lg bg-blue-500 px-4 py-2 font-bold text-white dark:text-dark"
@@ -180,7 +183,16 @@ const AllOrders = () => {
                 Items
               </th>
               <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
+                Delivery Type
+              </th>
+              <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
                 Quantity
+              </th>
+              <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
+                Order Date
+              </th>
+              <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
+                Expected Delivery
               </th>
               <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white">
                 Status
@@ -203,7 +215,33 @@ const AllOrders = () => {
                 <td
                   className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allOrders.length - 1 ? "border-b-0" : "border-b"}`}
                 >
+                  <p className="text-dark dark:text-white">
+                    {order.quickdelivery
+                      ? "Quick Delivery"
+                      : "Standard Delivery"}
+                  </p>
+                </td>
+
+                <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allOrders.length - 1 ? "border-b-0" : "border-b"}`}
+                >
                   <p className="text-dark dark:text-white">{order.quantity}</p>
+                </td>
+                <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allOrders.length - 1 ? "border-b-0" : "border-b"}`}
+                >
+                  <p className="text-dark dark:text-white">
+                    {new Date(order.orderplaced).toLocaleDateString("en-CA")}
+                  </p>
+                </td>
+                <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allOrders.length - 1 ? "border-b-0" : "border-b"}`}
+                >
+                  <p className="text-dark dark:text-white">
+                    {new Date(order.expecteddelivery).toLocaleDateString(
+                      "en-CA",
+                    )}
+                  </p>
                 </td>
                 <td
                   className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allOrders.length - 1 ? "border-b-0" : "border-b"}`}
@@ -220,6 +258,7 @@ const AllOrders = () => {
                     {order.deliverystatus}
                   </p>
                 </td>
+
                 <td
                   className={`border-[#eee] px-4 py-4 dark:border-dark-3 xl:pr-7.5 ${index === allOrders.length - 1 ? "border-b-0" : "border-b"}`}
                 >

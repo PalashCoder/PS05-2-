@@ -23,6 +23,7 @@ const Inventory = () => {
     itemname: "",
     inventorystock: "",
     visiblestock: "",
+    addedate: new Date(),
   });
   const [currentId, setCurrentId] = useState<string | null>(null);
   const [onSubmit, setOnSubmit] = useState(false);
@@ -72,6 +73,7 @@ const Inventory = () => {
       itemname: product.itemname,
       inventorystock: product.inventorystock,
       visiblestock: product.visiblestock,
+      addedate: product.addedate,
     });
     setCurrentId(product._id);
     onOpen();
@@ -89,6 +91,7 @@ const Inventory = () => {
             itemname: "",
             inventorystock: "",
             visiblestock: "",
+            addedate: new Date(),
           }); // Reset form
           onOpen();
         }}
@@ -174,6 +177,9 @@ const Inventory = () => {
                 Product Name
               </th>
               <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
+                Stock Added Date
+              </th>
+              <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
                 Inventory Stock
               </th>
               <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white">
@@ -195,6 +201,13 @@ const Inventory = () => {
                   <h5 className="text-dark dark:text-white">
                     {product.itemname}
                   </h5>
+                </td>
+                <td
+                  className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === allProducts.length - 1 ? "border-b-0" : "border-b"}`}
+                >
+                  <p className="text-dark dark:text-white">
+                    {new Date(product.addedate).toLocaleDateString("en-CA")}
+                  </p>
                 </td>
                 <td
                   className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${

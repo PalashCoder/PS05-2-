@@ -9,6 +9,12 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense, Dropout
 from keras.callbacks import EarlyStopping
 import logging
+from pymongo import MongoClient
+
+# MongoDB connection
+client = MongoClient()
+client = MongoClient("mongodb+srv://ngpalashdas:R6PbMeYZucqyyNCH@cluster0.luhacdo.mongodb.net/")
+db = client.test
 
 app = FastAPI()
 

@@ -17,6 +17,7 @@ import axios from "axios";
 import mongoose from "mongoose";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const AllOrders = () => {
   const [orderData, setOrderData] = useState({
@@ -70,15 +71,28 @@ const AllOrders = () => {
   };
 
   const handleEdit = (order: any) => {
-    setOrderData({
-      itemname: order.itemname,
-      quantity: order.quantity,
-      quickdelivery: order.quickdelivery,
-      expecteddelivery: new Date(order.expecteddelivery),
-      orderplaced: new Date(),
-    });
-    setCurrentId(order._id);
-    onOpen();
+    const currentTime = new Date();
+    const orderPlacedTime = new Date(order.orderplaced);
+
+    const timeDifference = currentTime.getTime() - orderPlacedTime.getTime();
+    const fiveMinutes = 50 * 60 * 1000;
+
+    if (timeDifference <= fiveMinutes) {
+      setOrderData({
+        itemname: order.itemname,
+        quantity: order.quantity,
+        quickdelivery: order.quickdelivery,
+        expecteddelivery: new Date(order.expecteddelivery),
+        orderplaced: new Date(),
+      });
+      setCurrentId(order._id);
+      onOpen();
+    } else {
+      toast.error("Correction Time Expired", {
+        duration: 2000,
+        position: "bottom-right",
+      });
+    }
   };
 
   const initialRef = React.useRef(null);

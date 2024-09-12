@@ -11,12 +11,23 @@ from keras.callbacks import EarlyStopping
 import logging
 from pymongo import MongoClient
 
+
+app = FastAPI()
+
+
 # MongoDB connection
 client = MongoClient()
 client = MongoClient("mongodb+srv://ngpalashdas:R6PbMeYZucqyyNCH@cluster0.luhacdo.mongodb.net/")
 db = client.test
+collection = db.inventories
 
-app = FastAPI()
+
+#Mongo Data
+@app.get("/inventories")
+async def get_inventories():
+    documents = list(collection.find())  # Convert cursor to list
+    return documents
+
 
 logging.basicConfig(level=logging.INFO)
 

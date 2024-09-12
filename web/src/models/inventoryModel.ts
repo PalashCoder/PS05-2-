@@ -5,9 +5,10 @@ const inventorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  quantity: {
+  inventorystock: {
     type: Number,
     required: true,
+    default: 0,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -16,7 +17,12 @@ const inventorySchema = new mongoose.Schema({
   },
   visiblestock: {
     type: Number,
-    default: "pending",
+    default: 0,
+    required: true,
+  },
+  addedate: {
+    type: Date,
+    default: Date.now,
   },
 });
 

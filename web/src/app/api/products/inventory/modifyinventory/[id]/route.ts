@@ -12,7 +12,7 @@ export async function PATCH(request: NextRequest) {
 
     // Parse the request body to get the updated product details
     const reqBody = await request.json();
-    const { itemname, quantity, visiblestock } = reqBody;
+    const { itemname, inventorystock, visiblestock } = reqBody;
 
     // Extract the product ID from the URL (dynamic routing)
     const url = new URL(request.url);
@@ -30,7 +30,7 @@ export async function PATCH(request: NextRequest) {
       { _id: id, user: userId }, // Ensure the product belongs to the authenticated user
       {
         itemname,
-        quantity,
+        inventorystock,
         visiblestock,
       },
       { new: true }, // This option returns the updated document

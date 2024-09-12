@@ -23,7 +23,7 @@ const QuickOrders = () => {
   const [orderData, setOrderData] = useState({
     itemname: "",
     quantity: "",
-    quickdelivery: false,
+    quickdelivery: true,
     expecteddelivery: new Date(),
   });
   const [currentId, setCurrentId] = useState<string | null>(null);
@@ -56,7 +56,7 @@ const QuickOrders = () => {
   const handleOrder = async () => {
     try {
       if (currentId) {
-        await axios.put(`/api/products/orders/modifyorder`, {
+        await axios.patch(`/api/products/orders/modifyorder`, {
           ...orderData,
           _id: currentId,
         });
@@ -78,6 +78,7 @@ const QuickOrders = () => {
       expecteddelivery: new Date(order.expecteddelivery),
     });
     setCurrentId(order._id);
+    console.log(order);
     onOpen();
   };
 

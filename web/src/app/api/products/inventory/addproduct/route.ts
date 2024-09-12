@@ -8,13 +8,13 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { itemname, quantity, visiblestock } = reqBody;
+    const { itemname, inventorystock, visiblestock } = reqBody;
 
     const userId = await getData(request);
 
     const newProduct = new Inventory({
       itemname,
-      quantity,
+      inventorystock,
       user: userId,
       visiblestock,
     });

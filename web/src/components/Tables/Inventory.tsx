@@ -21,7 +21,7 @@ import React, { useEffect, useState } from "react";
 const Inventory = () => {
   const [inventoryData, setInventoryData] = useState({
     itemname: "",
-    quantity: "",
+    inventorystock: "",
     visiblestock: "",
   });
   const [currentId, setCurrentId] = useState<string | null>(null);
@@ -70,7 +70,7 @@ const Inventory = () => {
   const handleEdit = (product: any) => {
     setInventoryData({
       itemname: product.itemname,
-      quantity: product.quantity,
+      inventorystock: product.inventorystock,
       visiblestock: product.visiblestock,
     });
     setCurrentId(product._id);
@@ -85,7 +85,11 @@ const Inventory = () => {
       <button
         onClick={() => {
           setCurrentId(null); // Reset current ID for adding new product
-          setInventoryData({ itemname: "", quantity: "", visiblestock: "" }); // Reset form
+          setInventoryData({
+            itemname: "",
+            inventorystock: "",
+            visiblestock: "",
+          }); // Reset form
           onOpen();
         }}
         className="text-body-2xl mb-4 rounded-lg bg-blue-500 px-4 py-2 font-bold text-white dark:text-dark"
@@ -120,15 +124,15 @@ const Inventory = () => {
               />
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel>Quantity</FormLabel>
+              <FormLabel>Inventory Stock</FormLabel>
               <Input
                 type="number"
-                placeholder="Quantity"
-                value={inventoryData.quantity}
+                placeholder="Inventory Stock"
+                value={inventoryData.inventorystock}
                 onChange={(e) =>
                   setInventoryData({
                     ...inventoryData,
-                    quantity: e.target.value,
+                    inventorystock: e.target.value,
                   })
                 }
               />
@@ -170,7 +174,7 @@ const Inventory = () => {
                 Product Name
               </th>
               <th className="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-white">
-                Quantity
+                Inventory Stock
               </th>
               <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white">
                 Visible Stock
@@ -198,7 +202,7 @@ const Inventory = () => {
                   }`}
                 >
                   <p className="text-dark dark:text-white">
-                    {product.quantity}
+                    {product.inventorystock}
                   </p>
                 </td>
                 <td

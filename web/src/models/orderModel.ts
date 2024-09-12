@@ -24,7 +24,11 @@ const orderSchema = new mongoose.Schema({
   },
   deliverystatus: {
     type: String,
-    default: "pending",
+    default: "Pending",
+  },
+  orderplaced: {
+    type: Date,
+    default: Date.now,
   },
 });
 
